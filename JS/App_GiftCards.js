@@ -9,28 +9,23 @@ const busqueda = document.querySelector("#busqueda");
 
 let idGiftUpdate = null;
 
-// Función para mostrar un mensaje en la parte superior
 const mostrarMensaje = (mensaje, tipo, div) => {
   div.textContent = mensaje;
 
-  // Define las clases CSS para diferentes tipos de mensajes
   const clases = {
       success: 'alert alert-success',
       update: 'alert alert-warning',
       error: 'alert alert-danger'
   };
 
-  // Aplica las clases CSS correspondientes
   div.className = clases[tipo];
   div.style.display = 'block';
 
-  // Oculta el mensaje después de 4 segundos
   setTimeout(() => {
       div.style.display = 'none';
   }, 4000);
 };
 
-// Función para cargar los datos desde el localStorage
 const cargarDatosDesdeLocalStorage = () => {
     const datosGuardados = localStorage.getItem("giftCardsData");
     if (datosGuardados) {
@@ -39,15 +34,12 @@ const cargarDatosDesdeLocalStorage = () => {
     return [];
 };
 
-// Función para guardar los datos en el localStorage
 const guardarDatosEnLocalStorage = (datos) => {
     localStorage.setItem("giftCardsData", JSON.stringify(datos));
 };
 
-// Inicialización de datos desde el localStorage
 let datos = cargarDatosDesdeLocalStorage();
 
-// Función para cargar la tabla con los datos actuales
 const cargarTabla = () => {
     cuerpoTabla.innerHTML = "";
     datos.forEach((item) => {
@@ -74,7 +66,6 @@ const cargarTabla = () => {
     });
 };
 
-// Función para agregar una Gift Card
 const agregarGift = (event) => {
     event.preventDefault();
     const id = datos.length > 0 ? datos[datos.length - 1].id + 1 : 1;
@@ -85,13 +76,12 @@ const agregarGift = (event) => {
     const imagen = document.querySelector("#imagen").value;
     const nuevaGiftCard = new Gift(id, gift, tipo, tiempo, precio, imagen);
     datos.push(nuevaGiftCard);
-    guardarDatosEnLocalStorage(datos); // Guardar datos en localStorage
+    guardarDatosEnLocalStorage(datos);
     document.querySelector("#formGift").reset();
     cargarTabla();
     mostrarMensaje(`Producto "${nuevaGiftCard.gift}" registrado con éxito`, "success", mensajeDiv);
 };
 
-// Función para mostrar el modal de actualización
 window.mostrarModal = (id) => {
     idGiftUpdate = id;
     const index = datos.findIndex((item) => item.id === idGiftUpdate);
@@ -108,7 +98,6 @@ window.mostrarModal = (id) => {
     myModal.show();
 };
 
-// Función para actualizar una Gift Card
 const giftUpdate = (e) => {
     e.preventDefault();
     const index = datos.findIndex((item) => item.id === idGiftUpdate);
@@ -123,7 +112,6 @@ const giftUpdate = (e) => {
     mostrarMensaje(`Producto "${datos[index].gift}" actualizado`, "update", mensajeActualizarDiv);
 };
 
-// Función para eliminar una Gift Card
 window.borrarGift = (id) => {
   const index = datos.findIndex((item) => item.id === id);
   const giftName = datos[index].gift;
@@ -136,7 +124,6 @@ window.borrarGift = (id) => {
   }
 };
 
-// Función para filtrar las Gift Cards
 busqueda.addEventListener("input", () => {
     const filtro = busqueda.value.toLowerCase();
     const filas = cuerpoTabla.querySelectorAll("tr");
@@ -150,9 +137,7 @@ busqueda.addEventListener("input", () => {
     });
 });
 
-// Eventos
 document.querySelector("#formGift").addEventListener("submit", agregarGift);
 document.querySelector("#formModal").addEventListener("submit", giftUpdate);
 
-// Cargar tabla al inicio
 cargarTabla();
