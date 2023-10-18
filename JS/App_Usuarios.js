@@ -91,18 +91,19 @@ window.borrarUsuario = (id) => {
 };
 
 busqueda.addEventListener("input", () => {
-  const filtro = busqueda.value.toLowerCase();
-  const filas = cuerpoTabla.querySelectorAll("tr");
-  filas.forEach((fila) => {
-    const nombre = fila.querySelector("th").textContent.toLowerCase();
-    if (nombre.includes(filtro)) {
-      fila.style.display = "table-row";
-    } else {
-      fila.style.display = "none";
-    }
+    const filtro = busqueda.value.toLowerCase();
+    const filas = cuerpoTabla.querySelectorAll("tr");
+    filas.forEach((fila) => {
+      const nombre = fila.querySelector("th").textContent.toLowerCase();
+      const email = fila.querySelector("td").textContent.toLowerCase();
+      if (nombre.includes(filtro) || email.includes(filtro)) {
+        fila.style.display = "table-row";
+      } else {
+        fila.style.display = "none";
+      }
+    });
   });
-});
-
+  
 const cargarTabla = () => {
   cuerpoTabla.innerHTML = "";
   datos.forEach((item) => {
