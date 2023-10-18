@@ -1,0 +1,11 @@
+.logo-container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.logo {
+    position: fixed;
+    top: 600px;
+    right: 60px;
+    max-width: 70px;
+}
