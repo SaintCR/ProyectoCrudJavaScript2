@@ -8,6 +8,12 @@ Este proyecto se concentra en la creación de un sistema CRUD utilizando las tec
 
 ------------
 
+## Versión
+
+Actualmente el software se encuentra en la versión **2.5**, la cual cuenta con diversas e increibles actualizaciones, mejoras y cambios.
+
+------------
+
 ## Instalación
 
 La instalación del software se caracteriza por su simplicidad. En la sección principal de la interfaz, situada en la esquina superior derecha, se identificará un botón de color verde que lleva la etiqueta "Code". Al seleccionar esta opción, se habilita la descarga del software en diversas modalidades, como la obtención de un archivo ZIP comprimido, o la posibilidad de sincronizar directamente con la plataforma mediante GitHub Desktop. Este proceso se alinea con la filosofía de desarrollo y distribución de código abierto, facilitando el acceso y la gestión de la aplicación a través de GitHub.
